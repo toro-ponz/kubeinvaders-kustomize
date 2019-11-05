@@ -1,0 +1,14 @@
+namespace: kubeinvaders
+
+resources:
+  - cluster-role.yaml
+  - cluster-role-binding.yaml
+  - config-map.yaml
+  - deployment.yaml
+  - ingress.yaml
+  - namespace.yaml
+  - service.yaml
+  - service-account.yaml
+
+commonLabels:
+  app: kubeinvaders

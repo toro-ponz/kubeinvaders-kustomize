@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: variables
+data:
+  alienproximity: "15"
+  hitslimit: "0"
+  routeHost: local.kubeinvaders.com
+  targetNamespaces: kube-system
+  token: ""
+  updatetime: "0.5"

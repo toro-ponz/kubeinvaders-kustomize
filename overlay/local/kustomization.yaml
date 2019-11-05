@@ -1,0 +1,9 @@
+bases:
+  - ../../base
+
+patches:
+  - config-map.yaml
+  - ingress.yaml
+
+commonLabels:
+  env: local

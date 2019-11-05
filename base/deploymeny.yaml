@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: kubeinvaders
+  name: kubeinvaders
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: kubeinvaders
+  template:
+    metadata:
+      labels:
+        app: kubeinvaders
+    spec:
+      serviceAccountName: kubeinvaders-service-account
+      containers:
+        - name: kubeinvaders
+          image: docker.io/luckysideburn/kubeinvaders:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
+          env:
+            - name: ALIENPROXIMITY
+              valueFrom:
+                configMapKeyRef:
+                  name: variables
+                  key: alienproximity
+            - name: HITSLIMIT
+              valueFrom:
+                configMapKeyRef:
+                  name: variables
+                  key: hitslimit
+            - name: NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: variables
+                  key: targetNamespaces
+            - name: ROUTE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: variables
+                  key: routeHost
+            - name: TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: variables
+                  key: token
+            - name: UPDATETIME
+              valueFrom:
+                configMapKeyRef:
+                  name: variables
+                  key: updatetime
